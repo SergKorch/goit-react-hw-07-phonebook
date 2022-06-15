@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import s from './ContactForm.module.css';
-import actions from '../../redux/contacts/contacts-action';
-import { useDispatch, useSelector } from 'react-redux';
+import {addContact} from '../../redux/contacts/contacts-operations';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import { getContacts } from 'redux/contacts/selectors';
 
 const ContactForm = () => {
@@ -38,7 +38,7 @@ const ContactForm = () => {
       Notiflix.Notify.failure(`${name} is already in contact`);
       return contacts;
     } else {
-      dispatch(actions.addContacts({ name, number }));
+      dispatch(addContact({ name, number }));
     }
     reset();
   };
@@ -84,4 +84,7 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+const mapDispatchToProps=dispatch=>({
+  onSubmit: ({ name, number }) => dispatch(addContact({ name, number }))
+})
+export default connect(null,mapDispatchToProps) (ContactForm);

@@ -2,15 +2,20 @@ import axios from 'axios';
 // const asyncActionCreator =args=>dispatch=>{
 //     fetch().then(x=> dispatch(aaa(x))).catch(y=> dispatch(yyy(y)))
 // }
-const addContactSuccess = (name, number) => dispatch => {
+import actions from './contacts-action'
+
+export const addContact = (name, number) => dispatch => {
   const contact = { name, number, completed: false };
-  dispatch({type: 'contacts/addContactRequest'})
+  dispatch(actions.addContactRequest);
   axios
-    .post('contacts/addNumber', { name, number })
+    .post('https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts', {
+      name,
+      number,
+    })
     .then(({ data }) =>
-      dispatch({ type: 'contacts/addContactSuccess', payload: data })
+      dispatch(actions.addContactSuccess(data))
     )
     .catch(error =>
-      dispatch({ type: 'contacts/addContactError', payload: error })
+      dispatch(actions.addContactError(error))
     );
 };
