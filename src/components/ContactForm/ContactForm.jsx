@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import s from './ContactForm.module.css';
 import {addContact} from '../../redux/contacts/contacts-operations';
 import { useDispatch, useSelector, connect } from 'react-redux';
-import { getContacts } from 'redux/contacts/selectors';
+// import { getContacts } from 'redux/contacts/selectors';
+
 
 const ContactForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const nameInpId = nanoid();
   const numbInpId = nanoid();
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(state => state.contacts.items);
+
   const changeInp = event => {
     const { name, value } = event.currentTarget;
     switch (name) {
@@ -21,7 +23,7 @@ const ContactForm = () => {
         break;
 
       case 'number':
-        setNumber(value);
+        setPhone(value);
         break;
 
       default:
@@ -38,13 +40,13 @@ const ContactForm = () => {
       Notiflix.Notify.failure(`${name} is already in contact`);
       return contacts;
     } else {
-      dispatch(addContact({ name, number }));
+      dispatch(addContact({ name, phone }));
     }
     reset();
   };
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -68,7 +70,7 @@ const ContactForm = () => {
         <input
           type="tel"
           name="number"
-          value={number}
+          value={phone}
           onChange={changeInp}
           id={numbInpId}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -85,6 +87,6 @@ const ContactForm = () => {
 };
 
 const mapDispatchToProps=dispatch=>({
-  onSubmit: ({ name, number }) => dispatch(addContact({ name, number }))
+  onSubmit: ({ name, phone }) => dispatch(addContact({ name, phone }))
 })
 export default connect(null,mapDispatchToProps) (ContactForm);

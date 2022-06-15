@@ -21,11 +21,11 @@ const ContactListItem = ({ id, nameContact, number, deleteContact }) => {
   );
 };
 
-ContactListItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  nameContact: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  deleteContact: PropTypes.func.isRequired,
-};
+// ContactListItem.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   nameContact: PropTypes.string.isRequired,
+//   number: PropTypes.string.isRequired,
+//   deleteContact: PropTypes.func.isRequired,
+// };
 
 export default ContactListItem;
