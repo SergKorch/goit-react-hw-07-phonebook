@@ -1,16 +1,13 @@
 import axios from 'axios';
-// const asyncActionCreator =args=>dispatch=>{
-//     fetch().then(x=> dispatch(aaa(x))).catch(y=> dispatch(yyy(y)))
-// }
 import actions from './contacts-action'
 
-export const addContact = (name, number) => dispatch => {
-  const contact = { name, number, completed: false };
-  dispatch(actions.addContactRequest);
+export const addContact = (name, phone) => dispatch => {
+  // const contact = { name, number, completed: false };
+  dispatch(actions.addContactRequest());
   axios
     .post('https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts', {
       name,
-      number,
+      phone,
     })
     .then(({ data }) =>
       dispatch(actions.addContactSuccess(data))
@@ -19,3 +16,16 @@ export const addContact = (name, number) => dispatch => {
       dispatch(actions.addContactError(error))
     );
 };
+
+export const deleteContact =(id)=> dispatch =>{
+  dispatch(actions.deleteContactRequest())
+ 
+  axios
+    .delete(`https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts/${id}`)
+    .then(() =>
+    dispatch(actions.deleteContactSuccess(id))
+    )
+    .catch(error =>
+      dispatch(actions.deleteContactError(error))
+    );
+}

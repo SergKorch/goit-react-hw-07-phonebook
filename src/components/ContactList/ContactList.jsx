@@ -1,5 +1,5 @@
 import React from 'react';
-import actions from '../../redux/contacts/contacts-action';
+import {deleteContact} from '../../redux/contacts/contacts-operations';
 import ContactListItem from './ContactListItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { visibleContacts } from 'redux/contacts/selectors';
@@ -16,7 +16,7 @@ const ContactList = () => {
           nameContact={name}
           number={number}
           deleteContact={id => {
-            dispatch(actions.deleteContact(id));
+            dispatch(deleteContact(id));
           }}
         />
       ))}
