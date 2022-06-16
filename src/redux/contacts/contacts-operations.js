@@ -15,7 +15,7 @@ export const fetchContacts = () => async dispatch => {
 export const addContact =
   ({ name, phone }) =>
   dispatch => {
-    const contact = { name, phone, completed: false };
+    const contact = { name, phone };
     dispatch(actions.addContactRequest());
     axios
       .post('https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts', contact)

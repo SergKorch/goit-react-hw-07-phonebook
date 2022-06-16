@@ -12,15 +12,13 @@ const deleteContactRequest = createAction('contacts/deleteContactRequest');
 const deleteContactSuccess = createAction('contacts/deleteContactSuccess');
 const deleteContactError = createAction('contacts/deleteContactError');
 
-
-
 const changeFilter = createAction('contacts/changeFilter');
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    fetchContactRequest,
-    fetchContactSuccess,
-    fetchContactError,
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
   addContactRequest,
   addContactSuccess,
   addContactError,

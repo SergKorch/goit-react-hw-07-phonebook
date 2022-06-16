@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import actions from '../../redux/contacts/contacts-action';
 import { useSelector, useDispatch } from 'react-redux';
-// import { connect } from 'react-redux';
-// import { getFilter } from 'redux/contacts/selectors';
+import { getFilter } from 'redux/contacts/selectors';
 
-const Filter = ({ title}) => {
-  const filter = useSelector(state => state.contacts.filter);
-  // console.log(filterV)
+const Filter = ({ title }) => {
+  const filter = useSelector(getFilter);
+
   const dispatch = useDispatch();
   return (
     <div>
@@ -26,13 +25,4 @@ Filter.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-// const mapStateToProps = state => ({
-//   value: state.contacts.filter,
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   onChange: e => dispatch(actions.changeFilter(e.target.value)),
-// });
-
-// export default connect( mapDispatchToProps)(Filter);
 export default Filter;

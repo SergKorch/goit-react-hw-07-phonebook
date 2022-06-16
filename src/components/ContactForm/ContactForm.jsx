@@ -1,12 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import s from './ContactForm.module.css';
-import {addContact} from '../../redux/contacts/contacts-operations';
-import { useDispatch, useSelector, connect } from 'react-redux';
-import { allContactsAPI } from 'services/getContactAPI/getContactAPI';
-// import { getContacts } from 'redux/contacts/selectors';
-
+import { addContact } from '../../redux/contacts/contacts-operations';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -49,7 +46,6 @@ const ContactForm = () => {
     setPhone('');
   };
 
-
   return (
     <form onSubmit={submitInp} action="submit">
       <label htmlFor={nameInpId}>
@@ -87,7 +83,4 @@ const ContactForm = () => {
   );
 };
 
-const mapDispatchToProps=dispatch=>({
-  onSubmit: ({ name, phone }) => dispatch(addContact({ name, phone }))
-})
-export default connect(null,mapDispatchToProps) (ContactForm);
+export default ContactForm;
