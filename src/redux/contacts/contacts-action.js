@@ -12,6 +12,8 @@ const deleteContactRequest = createAction('contacts/deleteContactRequest');
 const deleteContactSuccess = createAction('contacts/deleteContactSuccess');
 const deleteContactError = createAction('contacts/deleteContactError');
 
+
+
 const changeFilter = createAction('contacts/change_filter');
 
 // eslint-disable-next-line import/no-anonymous-default-export

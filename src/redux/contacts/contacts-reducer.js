@@ -20,6 +20,7 @@ const loading = createReducer(false,{
   [actions.deleteContactRequest]: ()=>true,
   [actions.deleteContactSuccess]: ()=>false,
   [actions.deleteContactError]: ()=>false,
+
 })
 export default combineReducers({
   items,

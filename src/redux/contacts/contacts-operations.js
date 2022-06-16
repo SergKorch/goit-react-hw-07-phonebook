@@ -12,14 +12,16 @@ export const fetchContacts = () => async dispatch => {
     dispatch(actions.fetchContactError(error));
   }
 };
-export const addContact = ({name, phone}) => dispatch => {
-  const contact = { name, phone, completed: false };
-  dispatch(actions.addContactRequest());
-  axios
-    .post('https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts', contact)
-    .then(({ data }) => dispatch(actions.addContactSuccess(data)))
-    .catch(error => dispatch(actions.addContactError(error)));
-};
+export const addContact =
+  ({ name, phone }) =>
+  dispatch => {
+    const contact = { name, phone, completed: false };
+    dispatch(actions.addContactRequest());
+    axios
+      .post('https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts', contact)
+      .then(({ data }) => dispatch(actions.addContactSuccess(data)))
+      .catch(error => dispatch(actions.addContactError(error)));
+  };
 
 export const deleteContact = id => dispatch => {
   dispatch(actions.deleteContactRequest());

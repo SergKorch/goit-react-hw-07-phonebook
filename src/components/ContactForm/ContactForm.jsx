@@ -4,6 +4,7 @@ import Notiflix from 'notiflix';
 import s from './ContactForm.module.css';
 import {addContact} from '../../redux/contacts/contacts-operations';
 import { useDispatch, useSelector, connect } from 'react-redux';
+import { allContactsAPI } from 'services/getContactAPI/getContactAPI';
 // import { getContacts } from 'redux/contacts/selectors';
 
 
@@ -14,7 +15,6 @@ const ContactForm = () => {
   const numbInpId = nanoid();
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
-
   const changeInp = event => {
     const { name, value } = event.currentTarget;
     switch (name) {
@@ -48,6 +48,7 @@ const ContactForm = () => {
     setName('');
     setPhone('');
   };
+
 
   return (
     <form onSubmit={submitInp} action="submit">

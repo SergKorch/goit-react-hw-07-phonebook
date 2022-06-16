@@ -9,14 +9,15 @@ import { connect } from 'react-redux';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const [contacts, setContacts] = useState([]);
+
   useEffect(() => {
-    allContactsAPI.allContactsAPI().then(setContacts);
-  }, []);
-  console.log(contacts)
+    dispatch(fetchContacts())
+  }, [dispatch]);
+  const contacts = useSelector(state=> state.contacts.items)
+
   return contacts.length > 0 ? (
     <ul>
-      {contacts.map(({ id, name, phone }) => (
+      {contacts && contacts.map(({ id, name, phone }) => (
         <ContactListItem
           key={id}
           id={id}
@@ -34,7 +35,7 @@ const ContactList = () => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchTodos: () => dispatch(fetchContacts()),
+  fetchContactsAPI: () => dispatch(fetchContacts()),
 });
 
 export default connect(mapDispatchToProps)(ContactList);
