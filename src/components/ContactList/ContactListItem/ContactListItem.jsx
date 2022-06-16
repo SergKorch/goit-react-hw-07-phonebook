@@ -21,9 +21,9 @@ const ContactListItem = ({ id, nameContact, number, deleteContact }) => {
     </li>
   );
 };
-const mapDispatchToProps = dispatch => ({
-  onClick: id => dispatch(deleteContact(id)),
-});
+// const mapDispatchToProps = dispatch => ({
+//   onClick: id => dispatch(deleteContact(id)),
+// });
 // ContactListItem.propTypes = {
 //   id: PropTypes.string.isRequired,
 //   nameContact: PropTypes.string.isRequired,

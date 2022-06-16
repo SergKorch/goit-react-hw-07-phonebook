@@ -14,10 +14,17 @@ const ContactList = () => {
     dispatch(fetchContacts())
   }, [dispatch]);
   const contacts = useSelector(state=> state.contacts.items)
-
-  return contacts.length > 0 ? (
+  const filter= useSelector(state=> state.contacts.filter)
+const visibleContacts = state => {
+    const normalizeFilter = filter.toLowerCase();
+    return contacts.filter(contact => {
+      return contact.name.toLowerCase().includes(normalizeFilter);
+    });
+  };
+  console.log(visibleContacts())
+  return visibleContacts().length > 0 ? (
     <ul>
-      {contacts && contacts.map(({ id, name, phone }) => (
+      {visibleContacts() && visibleContacts().map(({ id, name, phone }) => (
         <ContactListItem
           key={id}
           id={id}

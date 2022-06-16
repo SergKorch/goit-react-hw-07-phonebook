@@ -14,7 +14,7 @@ const deleteContactError = createAction('contacts/deleteContactError');
 
 
 
-const changeFilter = createAction('contacts/change_filter');
+const changeFilter = createAction('contacts/changeFilter');
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

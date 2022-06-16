@@ -8,7 +8,7 @@ const items = createReducer([], {
     state.filter(({ id }) => id !== payload),
 });
 const filter = createReducer('', {
-  [actions.changeFilter]: (state, { payload }) => payload,
+  [actions.changeFilter]: (_, { payload }) => payload,
 });
 const loading = createReducer(false,{
   [actions.fetchContactRequest]: ()=>true,
@@ -22,7 +22,9 @@ const loading = createReducer(false,{
   [actions.deleteContactError]: ()=>false,
 
 })
+const error = createReducer(null, {});
 export default combineReducers({
   items,
   filter,
+error,
 });
