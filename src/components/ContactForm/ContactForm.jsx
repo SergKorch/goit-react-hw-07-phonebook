@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
 import s from './ContactForm.module.css';
-import { addContact } from '../../redux/contacts/contacts-operations';
+import { addContact } from '../../redux/contacts/contactsAPI';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ContactForm = () => {

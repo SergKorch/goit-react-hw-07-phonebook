@@ -7,7 +7,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import reducer from './contacts/contacts-reducer';
+import reducer from '../redux/contacts/contactsAPI';
 
 const middleware = [
   ...getDefaultMiddleware({

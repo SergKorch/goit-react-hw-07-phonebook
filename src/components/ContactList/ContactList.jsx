@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
-import { deleteContact } from '../../redux/contacts/contacts-operations';
+// import { deleteContact } from '../../redux/contacts/contacts-operations';
 import ContactListItem from './ContactListItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { visibleContacts } from 'redux/contacts/selectors';
-import { fetchContacts } from '../../redux/contacts/contacts-operations';
+// import { fetchContacts } from '../../redux/contacts/contacts-operations';
+import { getContacts, deleteContact } from '../../redux/contacts/contactsAPI';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-  const contacts = useSelector(visibleContacts);
-
+  dispatch(getContacts());
+  const contacts = useSelector(state => state.contacts.items);
   return contacts.length > 0 ? (
     <ul>
       {contacts.map(({ id, name, phone }) => (

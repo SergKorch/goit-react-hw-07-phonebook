@@ -1,18 +1,18 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import actions from './contacts-action';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import axios from 'axios';
+// import { fetchContactSuccess } from './contactsAPI';
 
-export const fetchContacts = () => async dispatch => {
-  dispatch(actions.fetchContactRequest());
-  try {
-    const { data } = await axios.get(
-      'https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts'
-    );
-    dispatch(actions.fetchContactSuccess(data));
-  } catch (error) {
-    dispatch(actions.fetchContactError(error));
-  }
-};
+// export const fetchContacts = () => async dispatch => {
+//   dispatch(actions.fetchContactSuccess());
+//   try {
+//     const { data } = await axios.get(
+//       'https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts'
+//     );
+//     dispatch(actions.fetchContactSuccess(data));
+//   } catch (error) {
+//     dispatch(actions.fetchContactError(error));
+//   }
+// };
 // export const fetchContacts2 = createAsyncThunk(
 //   'contacts/fetchContacts',
 //   async () => {
@@ -22,16 +22,16 @@ export const fetchContacts = () => async dispatch => {
 //     return data;
 //   }
 // );
-export const addContact =
-  ({ name, phone }) =>
-  dispatch => {
+// export const addContact =
+//   ({ name, phone }) =>
+//   dispatch => {
     
-    dispatch(actions.addContactRequest());
-    axios
-      .post('https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts', contact)
-      .then(({ data }) => dispatch(actions.addContactSuccess(data)))
-      .catch(error => dispatch(actions.addContactError(error)));
-  };
+//     dispatch(actions.addContactRequest());
+//     axios
+//       .post('https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts', { name, phone })
+//       .then(({ data }) => dispatch(actions.addContactSuccess(data)))
+//       .catch(error => dispatch(actions.addContactError(error)));
+//   };
 
   // export const addContact2 = createAsyncThunk(
   //   'contacts/addContacts',
@@ -45,11 +45,11 @@ export const addContact =
   //   }
   // );
 
-export const deleteContact = id => dispatch => {
-  dispatch(actions.deleteContactRequest());
+// export const deleteContact = id => dispatch => {
+//   dispatch(actions.deleteContactRequest());
 
-  axios
-    .delete(`https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts/${id}`)
-    .then(() => dispatch(actions.deleteContactSuccess(id)))
-    .catch(error => dispatch(actions.deleteContactError(error)));
-};
+//   axios
+//     .delete(`https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts/${id}`)
+//     .then(() => dispatch(actions.deleteContactSuccess(id)))
+//     .catch(error => dispatch(actions.deleteContactError(error)));
+// };
