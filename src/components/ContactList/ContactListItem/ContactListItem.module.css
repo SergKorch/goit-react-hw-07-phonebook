@@ -1,13 +1,15 @@
 .deleteButton {
-  width: 50px;
-  height: auto;
+  width: 55px;
+  height: 45px;
   text-decoration: none;
   display: block;
   position: relative;
   overflow: hidden;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   border: 2px solid #fe6637;
   border-radius: 50%;
-
   font-family: 'Montserrat', sans-serif;
   color: #fe6637;
   transition: 0.2s ease-in-out;
@@ -19,8 +21,8 @@
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.5)
   );
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   position: absolute;
   top: -8px;
   left: -75px;

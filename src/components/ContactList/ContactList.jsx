@@ -21,15 +21,14 @@ const ContactList = () => {
   };
   return (
     <div>
-      <div className={s.sweet_loading}>
+      {status && <div className={s.sweet_loading}>
         <ScaleLoader
           size={150}
           color={'#123abc'}
-          loading={status}
           speedMultiplier={1.5}
         />
-      </div>
-      {visibleContacts().length > 0 && status === false && (
+      </div>}
+      {visibleContacts().length > 0  && (
         <ul>
           {visibleContacts().map(({ id, name, phone }) => (
             <ContactListItem
