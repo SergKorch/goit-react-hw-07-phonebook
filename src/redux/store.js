@@ -7,8 +7,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import reducer from '../redux/contacts/contactsAPI';
-
+import contactsReducer from './contactSlice';
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
@@ -18,9 +17,7 @@ const middleware = [
 ];
 
 export const store = configureStore({
-  reducer: {
-    contacts: reducer,
-  },
+  reducer: { contacts: contactsReducer },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });

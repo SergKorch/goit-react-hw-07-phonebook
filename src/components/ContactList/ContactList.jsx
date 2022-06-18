@@ -1,31 +1,54 @@
 import React, { useEffect } from 'react';
-// import { deleteContact } from '../../redux/contacts/contacts-operations';
 import ContactListItem from './ContactListItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { visibleContacts } from 'redux/contacts/selectors';
-// import { fetchContacts } from '../../redux/contacts/contacts-operations';
-import { getContacts, deleteContact } from '../../redux/contacts/contactsAPI';
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import s from './ContactList.module.css';
+import { getContacts, deleteContactByID } from '../../redux/contactSlice';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  dispatch(getContacts());
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
+  const status = useSelector(state => state.contacts.loading);
   const contacts = useSelector(state => state.contacts.items);
-  return contacts.length > 0 ? (
-    <ul>
-      {contacts.map(({ id, name, phone }) => (
-        <ContactListItem
-          key={id}
-          id={id}
-          nameContact={name}
-          number={phone}
-          deleteContact={id => {
-            dispatch(deleteContact(id));
-          }}
+  const filter = useSelector(state => state.contacts.filter);
+  const visibleContacts = () => {
+    const normalizeFilter = filter.toLowerCase();
+    return contacts.filter(contact => {
+      return contact.name.toLowerCase().includes(normalizeFilter);
+    });
+  };
+  return (
+    <div>
+      <div className={s.sweet_loading}>
+        <ScaleLoader
+          size={150}
+          color={'#123abc'}
+          loading={status}
+          speedMultiplier={1.5}
         />
-      ))}
-    </ul>
-  ) : (
-    <p>No contacts</p>
+      </div>
+      {visibleContacts().length > 0 && status === false && (
+        <ul>
+          {visibleContacts().map(({ id, name, phone }) => (
+            <ContactListItem
+              key={id}
+              id={id}
+              nameContact={name}
+              number={phone}
+              deleteContact={id => {
+                dispatch(deleteContactByID(id));
+                dispatch(getContacts());
+              }}
+            />
+          ))}
+        </ul>
+      )}
+      {visibleContacts().length === 0 && status === false && (
+        <h1>No contacts</h1>
+      )}
+    </div>
   );
 };
 

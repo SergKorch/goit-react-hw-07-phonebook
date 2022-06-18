@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
-// import actions from '../../redux/contacts/contacts-action';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilter } from 'redux/contacts/selectors';
+import { changeFilter } from 'redux/contactSlice';
 
 const Filter = ({ title }) => {
-  // const filter = useSelector(getFilter);
-
+  const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
   return (
     <div>
@@ -13,8 +11,8 @@ const Filter = ({ title }) => {
         <p>{title}</p>
         <input
           type="text"
-          // value={filter}
-          // onChange={e => dispatch(actions.changeFilter(e.target.value))}
+          value={filter}
+          onChange={e => dispatch(changeFilter(e.target.value))}
         />
       </label>
     </div>
